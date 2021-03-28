@@ -1,0 +1,35 @@
+syntax = "proto3";
+package calculator;
+option go_package="calculatorpb";
+message SumRequest{
+    int32 num1 = 1;
+    int32 num2 = 2;
+}
+message SumResponse{
+    int32 result = 1;
+}
+message PNDRequest{
+    int32 number =1;
+}
+message PNDResponse{
+    int32 number =1;
+}
+message AverageRequest{
+    float num =1;
+}
+message AverageResponse{
+    float result =1;
+}
+message FindMaxRequest{
+    int32 num = 1;
+}
+message FindMaxResponse{
+    int32 max = 1;
+}
+service  CalculatorService{
+    //khai bao API
+    rpc Sum(SumRequest) returns (SumResponse){} //unary
+    rpc PrimeNumberDecomposition(PNDRequest) returns(stream PNDResponse){} //server streaming
+    rpc Average(stream AverageRequest) returns (AverageResponse){} //client streaming
+    rpc FindMax(stream FindMaxRequest) returns (stream FindMaxResponse){}//bio stream
+}

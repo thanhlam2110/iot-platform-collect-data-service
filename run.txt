@@ -1,0 +1,3 @@
+protoc .\calculatorpb\calculator.proto --go_out=plugins=grpc:.
+
+go run .\server\server.go
